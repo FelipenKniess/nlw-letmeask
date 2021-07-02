@@ -13,17 +13,19 @@ import 'firebase/database'
 //     appId: process.env.REACT_APP_APP_ID
 
 //   };
-  var firebaseConfig = {
-    apiKey: "AIzaSyAcMQScmuUn8TVddebVgR8ZAKuRhg3RPJI",
-    authDomain: "letmeask-7345b.firebaseapp.com",
-    databaseURL: "https://letmeask-7345b-default-rtdb.firebaseio.com",
-    projectId: "letmeask-7345b",
-    storageBucket: "letmeask-7345b.appspot.com",
-    messagingSenderId: "310660224008",
-    appId: "1:310660224008:web:9e2c764ef020954eb8edbd"
-  };
+var firebaseConfig = {
+  apiKey: "AIzaSyAcMQScmuUn8TVddebVgR8ZAKuRhg3RPJI",
+  authDomain: "letmeask-7345b.firebaseapp.com",
+  databaseURL: "https://letmeask-7345b-default-rtdb.firebaseio.com",
+  projectId: "letmeask-7345b",
+  storageBucket: "letmeask-7345b.appspot.com",
+  messagingSenderId: "310660224008",
+  appId: "1:310660224008:web:9e2c764ef020954eb8edbd"
+};
 
-  firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
-  export const auth = firebase.auth();
-  export const database = firebase.database();
+const auth = firebase.auth();
+const database = firebase.database();
+
+export { auth, database, firebase }
