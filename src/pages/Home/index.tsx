@@ -10,9 +10,11 @@ import { database } from '../../services/firebase';
 
 import { Button } from '../../components/Button';
 import { useAuth } from '../../hooks/useAuth';
+import { useToast } from '../../hooks/useToast';
 
 export default function Home() {
   const history = useHistory();
+  const { addToast } = useToast();
   const { user, signInWithGoogle } = useAuth();
   const [roomCode, setRoomCode] = useState('');
 
@@ -34,14 +36,28 @@ export default function Home() {
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     if (!roomRef.exists()) {
-      alert('Room does not exists.');
+      addToast({
+        title: 'Falha ao entrar na sala',
+        description: 'Essa sala não existe!',
+        type: 'error'
+      })
       return;
     }
 
     if (roomRef.val().endedAt) {
-      alert('Room already closed.');
+      addToast({
+        title: 'Falha ao entrar na sala',
+        description: 'Essa sala já se encerrou!',
+        type: 'error'
+      })
       return;
     }
+
+    addToast({
+      title: 'Sucesso!',
+      description: 'Bem vindo a sala!',
+      type: 'success'
+    })
 
     history.push(`/rooms/${roomCode}`);
   }
@@ -68,7 +84,7 @@ export default function Home() {
               onChange={event => setRoomCode(event.target.value)}
               value={roomCode}
             />
-            <Button type="submit">
+            <Button disabled={roomCode.length === 0 && true} type="submit">
               Entrar na sala
             </Button>
           </form>

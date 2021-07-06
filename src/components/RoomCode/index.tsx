@@ -2,13 +2,22 @@ import copyImg from '../../assets/images/copy.svg';
 
 import { Container } from './styles';
 
+import { useToast } from '../../hooks/useToast';
 type RoomCodeProps = {
   code: string;
 }
 
 export function RoomCode(props: RoomCodeProps) {
+  const { addToast } = useToast();
+
   function copyRoomCodeToClipboard() {
-    navigator.clipboard.writeText(props.code)
+    addToast({
+      title: 'Código copiado com sucesso!',
+      description: '',
+      type: 'info'
+    });
+
+    navigator.clipboard.writeText(props.code);
   }
 
   return (
