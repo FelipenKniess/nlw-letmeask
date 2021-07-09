@@ -1,13 +1,11 @@
 ﻿import { useHistory, useParams } from 'react-router-dom'
 
-import logoImg from '../../assets/images/logo.svg';
 import deleteImg from '../../assets/images/delete.svg';
 import checkImg from '../../assets/images/check.svg';
 import answerImg from '../../assets/images/answer.svg';
 
-import { Button } from '../../components/Button';
 import { Question } from '../../components/Question';
-import { RoomCode } from '../../components/RoomCode';
+import { Header } from '../../components/Header';
 
 import { useRoom } from '../../hooks/useRoom';
 import { database } from '../../services/firebase';
@@ -53,15 +51,7 @@ export default function AdminRoom() {
 
   return (
     <Container>
-      <header>
-        <div className="content">
-          <img src={logoImg} alt="Letmeask" />
-          <div>
-            <RoomCode code={roomId} />
-            <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
-          </div>
-        </div>
-      </header>
+      <Header isAdmin />
 
       <main>
         <div className="room-title">

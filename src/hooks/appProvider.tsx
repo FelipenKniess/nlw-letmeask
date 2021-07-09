@@ -2,12 +2,15 @@
 
 import { AuthContextProvider } from '../contexts/AuthContext';
 import { ToastProvider } from './useToast';
+import ThemeProvider from './themeAppProvider';
 
 const AppProvider:React.FC = ({children}) => (
     <AuthContextProvider>
-        <ToastProvider>
-            {children}
-        </ToastProvider>
+        <ThemeProvider>
+            <ToastProvider>
+                {children}
+            </ToastProvider>
+        </ThemeProvider>
     </AuthContextProvider>
 )
 export default AppProvider;
